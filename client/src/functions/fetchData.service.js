@@ -16,8 +16,8 @@ class FetchApi {
       })
       .catch((err) => console.error(err));
   }
-  async fetchData() {
-    return axios.get(SERVER_URL + "/dashboard").then((response) => {
+  async fetchData(code) {
+    return axios.get(SERVER_URL + "/callback/" + code).then((response) => {
       this.userData = response.data;
     });
   }

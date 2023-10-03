@@ -54,7 +54,7 @@ function App() {
         const code = newQueryParam.get("code");
         setQueryParam(code);
         if (code) {
-          await FetchApi.fetchData;
+          await FetchApi.fetchData(code);
           setUserData(FetchApi.getUserData());
           console.log(userData)
         }

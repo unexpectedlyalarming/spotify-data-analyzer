@@ -59,8 +59,9 @@ app.get("/login", (req, res) => {
   res.json(authUrl);
 });
 
-app.get("/callback", async (req, res) => {
-  const code = req.query.code;
+app.get("/callback/:code", async (req, res) => {
+  const code = req.params["code"];
+
   try {
     const response = await axios.post(
       apiTokenUrl,
@@ -81,9 +82,9 @@ app.get("/callback", async (req, res) => {
 
     req.session.access_token = access_token;
     req.session.refresh_token = refresh_token;
-    res.redirect("/dashboard");
+    res.status(200);
   } catch (err) {
-    json.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 });
 
